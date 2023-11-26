@@ -12,6 +12,9 @@ django = "^4.2.7"
 web3 = "^6.11.3"
 gunicorn = "20.1.0"
 djangorestframework = "^3.14.0"
+django-environ = "0.9.0"
+django-split-settings = "^1.2.0"
+pyyaml = "^6.0.1"
 
 
 [build-system]

@@ -1,9 +1,8 @@
-
-photos/
+# Personal
 README_DEV.md
 poetry.lock
-backend/.env
 
+# Standard
 # Backup files
 *.bak
 

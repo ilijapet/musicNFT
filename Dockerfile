@@ -1,14 +1,16 @@
-FROM python:3.8-slim-buster
 
-RUN pip install poetry==1.6.1
+    FROM python:3.8-slim-buster
 
-WORKDIR /app
+    RUN pip install poetry==1.6.1
 
-COPY . .
+    WORKDIR /app
 
-RUN poetry install
+    COPY . .
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+    RUN poetry install
 
-CMD [ "poetry",  "run",  "python", "manage.py", "runserver",  "0.0.0.0:8000"]
+    ENV PYTHONDONTWRITEBYTECODE=1
+    ENV PYTHONUNBUFFERED=1
+
+
+    CMD [ "poetry",  "run",  "python", "-m", "backend.manage", "runserver",  "0.0.0.0:8000"] 
