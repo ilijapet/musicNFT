@@ -1,24 +1,20 @@
- from pathlib import Path
 import os
 import environ
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# env = environ.Env()
+# env_file = os.path.join(BASE_DIR, "backend/.env")
+# if os.path.isfile(env_file):
+#     # read a local .env file
+#     env.read_env(env_file)
+# else:
+#     raise ValueError("We cannot find .env file")
 
-env = environ.Env()
-env_file = os.path.join(BASE_DIR, "backend/.env")
-if os.path.isfile(env_file):
-    # read a local .env file
-    env.read_env(env_file)
-else:
-    raise ValueError("We cannot find .env file")
-
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = "3878947329847328947984987237"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -71,7 +67,7 @@ WSGI_APPLICATION = "backend.musicNFT.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": "/home/ilija/code/my_tutorials/musical_nft/db.sqlite3",
     }
 }
 
