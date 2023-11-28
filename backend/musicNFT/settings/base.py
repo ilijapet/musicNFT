@@ -15,7 +15,7 @@ SECRET_KEY = NotImplemented
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # type: ignore
 
 # Application definition
 
@@ -43,7 +43,7 @@ ROOT_URLCONF = "backend.musicNFT.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates/")],
+        "DIRS": [os.path.join(BASE_DIR, "templates/")],  # type: ignore
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
