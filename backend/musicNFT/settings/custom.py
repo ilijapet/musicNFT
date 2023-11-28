@@ -1,5 +1,5 @@
-""" 
-setting specific to this aplication only (no Django or third-party settings)
+"""
+setting specific to this application only (no Django or third-party settings)
 """
 
 IN_DOCKER = False

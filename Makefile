@@ -17,7 +17,7 @@ migrations:
 
 .PHONY: update
 update: install migrations ;
-	
+
 .PHONY: env
 env:
 	poetry shell
@@ -25,4 +25,3 @@ env:
 .PHONY: deact
 deact:
 	poetry exit
-

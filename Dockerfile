@@ -13,4 +13,4 @@
     ENV PYTHONUNBUFFERED=1
 
 
-    CMD [ "poetry",  "run",  "python", "-m", "backend.manage", "runserver",  "0.0.0.0:8000"] 
+    CMD [ "poetry",  "run",  "python", "-m", "backend.manage", "runserver",  "0.0.0.0:8000"]

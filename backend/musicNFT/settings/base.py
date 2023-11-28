@@ -10,7 +10,7 @@ import environ
 # else:
 #     raise ValueError("We cannot find .env file")
 
-SECRET_KEY = "3878947329847328947984987237"
+SECRET_KEY = NotImplemented
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
