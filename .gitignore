@@ -79,3 +79,6 @@ pip-log.txt
 coverage.xml
 htmlcov/
 nosetests.xml
+
+# Amazon Web Services
+musicnft_keys.pem
