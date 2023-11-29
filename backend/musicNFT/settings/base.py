@@ -2,7 +2,6 @@ import os
 
 import environ
 
-
 SECRET_KEY = NotImplemented
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -66,7 +65,6 @@ DATABASES = {
         "CONN_MAX_AGE": 60,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

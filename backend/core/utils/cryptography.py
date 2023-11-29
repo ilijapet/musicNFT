@@ -15,6 +15,7 @@ class KeyPair(NamedTuple):
 
 
 class CustomEncoder(json.JSONEncoder):
+
     def default(self, obj):
         if isinstance(obj, UUID):
             return str(obj)
@@ -27,9 +28,7 @@ def bytes_to_hex(bytes_: bytes) -> hexstr:
 
 
 def derive_public_key(signing_key: SigningKey) -> AccountNumber:
-    return AccountNumber(
-        bytes_to_hex(NaClSigningKey(hex_to_bytes(signing_key)).verify_key)
-    )
+    return AccountNumber(bytes_to_hex(NaClSigningKey(hex_to_bytes(signing_key)).verify_key))
 
 
 def generate_key_pair() -> KeyPair:
@@ -68,6 +67,4 @@ def is_signature_valid(message: bytes, verify_key: str, signature: str) -> bool:
 
 
 def normalize_dict(dict_: dict) -> bytes:
-    return json.dumps(
-        dict_, separators=(",", ":"), sort_keys=True, cls=CustomEncoder
-    ).encode("utf-8")
+    return json.dumps(dict_, separators=(",", ":"), sort_keys=True, cls=CustomEncoder).encode("utf-8")

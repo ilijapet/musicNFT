@@ -3,7 +3,9 @@ LOGGING = {
     "disable_existing_loggers": False,
     # how to format the output
     "formatters": {
-        "standard": {"format": "%(asctime)s %(levelname)s %(name)s %(message)s"},
+        "standard": {
+            "format": "%(asctime)s %(levelname)s %(name)s %(message)s"
+        },
     },
     # how to handle log messages
     "handlers": {
@@ -19,8 +21,7 @@ LOGGING = {
         logger_name: {
             "level": "WARNING",
             "propagate": True,
-        }
-        for logger_name in (
+        } for logger_name in (
             "django",
             "django.request",
             "django.db.backends",

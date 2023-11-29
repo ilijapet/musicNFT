@@ -5,9 +5,7 @@ from split_settings.tools import include, optional
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
-
 ENVVAR_SETTINGS_PREFIX = "BACKENDSETTINGS_"
-
 
 # 1) This will be false
 LOCAL_SETTINGS_PATH = os.getenv(f"{ENVVAR_SETTINGS_PREFIX}LOCAL_SETTINGS_PATH")
