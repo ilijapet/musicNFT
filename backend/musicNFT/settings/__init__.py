@@ -5,7 +5,9 @@ from split_settings.tools import include, optional
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
+
 ENVVAR_SETTINGS_PREFIX = "BACKENDSETTINGS_"
+
 
 # 1) This will be false
 LOCAL_SETTINGS_PATH = os.getenv(f"{ENVVAR_SETTINGS_PREFIX}LOCAL_SETTINGS_PATH")
@@ -22,6 +24,8 @@ if not os.path.isabs(LOCAL_SETTINGS_PATH):
 include(
     # base settings
     "base.py",
+    # logging settings
+    "logging.py",
     # application settings
     "custom.py",
     # dev settings (overwrite if any)

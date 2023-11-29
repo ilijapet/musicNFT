@@ -2,13 +2,6 @@ import os
 
 import environ
 
-# env = environ.Env()
-# env_file = os.path.join(BASE_DIR, "backend/.env")
-# if os.path.isfile(env_file):
-#     # read a local .env file
-#     env.read_env(env_file)
-# else:
-#     raise ValueError("We cannot find .env file")
 
 SECRET_KEY = NotImplemented
 
@@ -63,10 +56,17 @@ WSGI_APPLICATION = "backend.musicNFT.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "/home/ilija/code/my_tutorials/musical_nft/db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "musicalNFT",
+        "USER": "denis",
+        "PASSWORD": "denis",  # here we should load from .env file not hardcoded
+        "HOST": "localhost",
+        "PORT": "5432",
+        "ATOMIC_REQUESTS": True,
+        "CONN_MAX_AGE": 60,
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

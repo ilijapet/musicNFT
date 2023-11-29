@@ -1,16 +1,37 @@
 
-    FROM python:3.8-slim-buster
+# Use an official Python runtime as the base image
+FROM python:3.10.4-buster
 
-    RUN pip install poetry==1.6.1
+# Set the working directory in the container
+WORKDIR /opt/project
 
-    WORKDIR /app
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONPATH .
+ENV BACKENDSETTINGS_IN_DOCKER true
 
-    COPY . .
+# Install dependencies
+RUN set -xe \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends build-essential \
+    && pip install virtualenvwrapper poetry==1.4.2 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-    RUN poetry install
+# Copy and install Python dependencies
+COPY ["poetry.lock", "pyproject.toml", "./"]
+RUN poetry install --no-root
 
-    ENV PYTHONDONTWRITEBYTECODE=1
-    ENV PYTHONUNBUFFERED=1
+# Copy project files
+COPY ["README.md", "Makefile", "./"]
+COPY backend backend
+COPY local local
 
+# Expose port 8000
+EXPOSE 8000
 
-    CMD [ "poetry",  "run",  "python", "-m", "backend.manage", "runserver",  "0.0.0.0:8000"]
+# Set up the entrypoint (this script is executed when the container starts)
+COPY scripts/entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

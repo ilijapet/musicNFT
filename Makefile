@@ -43,6 +43,23 @@ install-pre-commmit:
 lint:
 	poetry run pre-commit run --all-files
 
+# Docker
+.PHONY: up-dependencies-only
+up-dependencies-only:
+	test -f .env || touch .env
+	docker-compose -f docker-compose.dev.yml up --force-recreate db
+
+
+.PHONY: gunicorn-dev
+gunicorn-dev:
+	poetry run gunicorn -c gunicorn.dev.py 
+	tail -f ./var/log/gunicorn/dev.log
+
+TODO: gunicorn-prod
+.PHONY: gunicorn-dev
+gunicorn-prod:
+	# poetry run gunicorn -c gunicorn.dev.py
+	# tail -f ./var/log/gunicorn/dev.log
 
 
 
