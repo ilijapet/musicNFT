@@ -47,6 +47,7 @@ lint:
 .PHONY: up-dependencies-only
 up-dependencies-only:
 	test -f .env || touch .env
+	# defualt is docker.compoe.yml and that is why we use -f docker.compose.dev.yml
 	docker-compose -f docker-compose.dev.yml up --force-recreate db
 
 

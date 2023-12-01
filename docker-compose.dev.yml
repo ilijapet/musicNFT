@@ -1,3 +1,4 @@
+# docker verison we use
 version: '3.9'
 
 services:
@@ -8,6 +9,7 @@ services:
     ports:
       - '5432:5432'
     environment:
+      # This must be the same as in the base.py file
       POSTGRES_DB: musicalNFT
       POSTGRES_USER: denis
       POSTGRES_PASSWORD: denis
