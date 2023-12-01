@@ -15,6 +15,7 @@ services:
       - postgresql-data:/var/lib/postgresql/data
 
   app:
+    # basically means run Dockerfile in current directory
     build: .
     restart: unless-stopped
     ports:
@@ -22,8 +23,10 @@ services:
     depends_on:
       - db
     environment:
-      BACKEND_SETTING_DATABASES: '{"default":{"HOST":"db"}}'
-      BACKEND__SETTING_LOCAL_SETTINGS_PATH: 'local/settings.prod.py'
+      # this go to settings/base.py
+      BACKENDSETTINGS_DATABASES: '{"default":{"HOST":"db"}}'
+      # this go to settings/__init__.py
+      BACKENDSETTINGS_LOCAL_SETTINGS_PATH: 'local/settings.prod.py'
 
 volumes:
   postgresql-data:
