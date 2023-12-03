@@ -30,7 +30,9 @@ COPY local local
 # Expose port 8000
 EXPOSE 8000
 
+COPY var var
 # Set up the entrypoint (this script is executed when the container starts)
+COPY ["gunicorn.dev.py", "./"]
 COPY scripts/entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 
