@@ -30,7 +30,6 @@ install:
 .PHONY: migrations
 migrations:
 	poetry run python -m backend.manage makemigrations; poetry run python -m backend.manage migrate
-
 # Install dependencies and run migrations
 .PHONY: update
 update: install migrations install-pre-commit;

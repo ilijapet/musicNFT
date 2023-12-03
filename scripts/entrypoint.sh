@@ -12,5 +12,4 @@ $RUN_MANAGE_PY migrate --no-input
 
 # exec poetry run daphne backend.project.asgi:application -p 8000 -b 0.0.0.0
 # TODO: this dev setting changes to prod
-exec poetry run gunicorn -c gunicorn.dev.py 
-exec tail -f ./var/log/gunicorn/dev.log
+make gunicorn-dev
