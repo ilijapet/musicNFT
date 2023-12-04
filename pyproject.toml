@@ -24,6 +24,8 @@ django-cors-headers = "^3.14.0"
 djangorestframework-simplejwt = "^5.2.2"
 pillow = "^9.5.0"
 whitenoise = "^6.4.0"
+pytest-xdist = "^3.5.0"
+model-bakery = "^1.17.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -35,6 +37,14 @@ pytest-django = "^4.5.2"
 [tool.isort]
 multi_line_output = 5
 line_length = 119
+
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "backend.musicNFT.settings"
+django_find_project = false
+python_files = "test_*.py"
+testpaths = ["backend"]
+filterwarnings = "ignore::DeprecationWarning:^(?!node\\.).*:"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "backend.musicNFT.settings"
