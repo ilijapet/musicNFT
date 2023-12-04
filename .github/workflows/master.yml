@@ -40,8 +40,7 @@ jobs:
         run: |
           pwd
           echo "ilija"
-          ls > ilija.txt
-          cat ilija.txt
+          ls > cat
           ssh target " docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
 
 # comment
