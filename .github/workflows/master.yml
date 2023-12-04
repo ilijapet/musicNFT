@@ -41,6 +41,6 @@ jobs:
           pwd
           echo "ilija"
           ls
-          ssh target "cd backend/ && docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
+          ssh target " docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
 
 # comment
