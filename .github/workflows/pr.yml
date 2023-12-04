@@ -11,9 +11,9 @@ jobs:
       db:
         image: postgres:14.2-alpine
         env:
-          POSTGRES_DB: cooking_core
-          POSTGRES_USER: cooking_core
-          POSTGRES_PASSWORD: cooking_core
+          POSTGRES_DB: musicalNFT
+          POSTGRES_USER: denis
+          POSTGRES_PASSWORD: denis
 
     steps:
       - uses: actions/checkout@v2

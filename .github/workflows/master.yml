@@ -38,7 +38,7 @@ jobs:
           END
       - name: Run deploy
         run: |
-          ls -a ..
-          ssh target "cd backend && docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
+          pwd
+          ssh target "cd backend/ && docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
 
 # comment
