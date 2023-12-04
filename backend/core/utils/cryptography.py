@@ -6,7 +6,7 @@ from nacl.exceptions import CryptoError
 from nacl.signing import SigningKey as NaClSigningKey
 from nacl.signing import VerifyKey
 
-from .types import AccountNumber, SigningKey, hexstr
+from .types import AccountNumber, SigningKey, hexstr  # type: ignore
 
 
 class KeyPair(NamedTuple):
@@ -23,23 +23,24 @@ class CustomEncoder(json.JSONEncoder):
         return super().default(obj)
 
 
-def bytes_to_hex(bytes_: bytes) -> hexstr:
-    return hexstr(bytes(bytes_).hex())
+def bytes_to_hex(bytes_: bytes) -> hexstr:  # type: ignore
+    return hexstr(bytes(bytes_).hex())  # type: ignore
 
 
 def derive_public_key(signing_key: SigningKey) -> AccountNumber:
-    return AccountNumber(bytes_to_hex(NaClSigningKey(hex_to_bytes(signing_key)).verify_key))
+    return AccountNumber(bytes_to_hex(NaClSigningKey(hex_to_bytes(signing_key)).verify_key)  # type: ignore
+                         )
 
 
 def generate_key_pair() -> KeyPair:
     signing_key = NaClSigningKey.generate()
     return KeyPair(
-        private=bytes_to_hex(bytes(signing_key)),
-        public=bytes_to_hex(signing_key.verify_key),
+        private=bytes_to_hex(bytes(signing_key)),  # type: ignore
+        public=bytes_to_hex(signing_key.verify_key),  # type: ignore
     )
 
 
-def hex_to_bytes(hex_string: hexstr) -> bytes:
+def hex_to_bytes(hex_string: hexstr) -> bytes:  # type: ignore
     return bytes.fromhex(hex_string)
 
 

@@ -46,13 +46,6 @@ python_files = "test_*.py"
 testpaths = ["backend"]
 filterwarnings = "ignore::DeprecationWarning:^(?!node\\.).*:"
 
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "backend.musicNFT.settings"
-django_find_project = false
-python_files = "test_*.py"
-testpaths = ["backend"]
-filterwarnings = "ignore::DeprecationWarning:^(?!node\\.).*:"
-
 [tool.yapf]
 based_on_style = "google"
 align_closing_bracket_with_visual_indent = true

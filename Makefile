@@ -1,5 +1,3 @@
-
-
 # Poetry commands
 .PHONY: env
 env:
@@ -56,10 +54,10 @@ gunicorn-dev:
 	tail -f ./var/log/gunicorn/dev.log
 
 TODO: gunicorn-prod
-.PHONY: gunicorn-dev
-gunicorn-prod:
-	# poetry run gunicorn -c gunicorn.dev.py
-	# tail -f ./var/log/gunicorn/dev.log
+# .PHONY: gunicorn-dev
+# gunicorn-prod:
+# 	# poetry run gunicorn -c gunicorn.dev.py
+# 	# tail -f ./var/log/gunicorn/dev.log
 
 
 

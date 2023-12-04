@@ -1,1 +1,40 @@
 name: Quality Assurance
+# Define when we want ot trigger this workflow
+on: [pull_request, workflow_call]
+
+jobs:
+  quality-assurance:
+    name: Quality Assurance
+    # same OS and container as we have in production
+    runs-on: ubuntu-latest
+    container: python:3.10.4-buster
+    servicies:
+      db:
+        image: postgres:14.2-alpine
+        env:
+          POSTGRES_DB: musicalNFT
+          POSTGRES_USER: denis
+          POSTGRES_PASSWORD: denis
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # here we can install poetry
+      - name: Install Poetry
+          uses: abatilo/actions-poetry@v2.0.0
+          with:
+            poetry-version: 1.4.2
+
+      - name: Install Dependencies
+          run: make install && make install-pre-commit  
+
+      - name: Lint
+        run: make lint
+
+    
+      # - name: Test
+      #   run: make test
+      #   env:
+      #     BACKENDSETTINGS_DATABASES: '{"default":{"HOST":"db"}}'
+      #     BACKENDSETTINGS_LOCAL_SETTINGS_PATH: './backend/musicNFT/settings/templates/settings.github.py'
+    
