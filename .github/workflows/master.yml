@@ -39,7 +39,7 @@ jobs:
       - name: Run deploy
         run: |
           pwd
-          ls > ilija.txt
+          ls >> ilija.txt
           cat ilija.txt
           ssh target "cd backend && docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
 
