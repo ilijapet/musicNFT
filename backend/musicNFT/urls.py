@@ -13,5 +13,4 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html")),
 ]
 
-
 # ilija
