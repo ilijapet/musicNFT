@@ -41,7 +41,7 @@ ROOT_URLCONF = "backend.musicNFT.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates/")],  # type: ignore
+        "DIRS": [os.path.join(BASE_DIR, "backend/templates/")],  # type: ignore
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
