@@ -1,14 +1,11 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    PermissionsMixin,
-    BaseUserManager,
-)
 
 
 class CustomAccountManager(BaseUserManager):
+
     def create_superuser(self, email, user_name, first_name, password, **other_fields):
         other_fields.setdefault("is_staff", True)
         other_fields.setdefault("is_superuser", True)
@@ -26,9 +23,7 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError(_("You must provide an email address"))
 
         email = self.normalize_email(email)
-        user = self.model(
-            email=email, user_name=user_name, first_name=first_name, **other_fields
-        )
+        user = self.model(email=email, user_name=user_name, first_name=first_name, **other_fields)
         user.set_password(password)
         user.save()
         return user
