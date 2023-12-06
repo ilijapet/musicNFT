@@ -6,7 +6,7 @@ SECRET_KEY = NotImplemented
 
 ALLOWED_HOSTS: List[str] = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS: List[str] = ["https://nftsmusic.net/"]
+CSRF_TRUSTED_ORIGINS: List[str] = ["https://nftsmusic.net", "https://wwww.nftmusic.net"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
