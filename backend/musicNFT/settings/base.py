@@ -6,7 +6,10 @@ SECRET_KEY = NotImplemented
 
 ALLOWED_HOSTS: List[str] = ["*"]
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS: List[str] = ["https://nftsmusic.net/"]
+CSRF_TRUSTED_ORIGINS: List[str] = [
+    "https://nftsmusic.net/",
+    "https://wwww.nftmusic.net",
+]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -22,8 +25,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
-    # Local
-    "backend.users.apps.UsersConfig",
+    "backend.authentication.apps.AuthenticationConfig",
 ]
 
 MIDDLEWARE = [
@@ -85,12 +87,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
-    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ]
 }
 
-AUTH_USER_MODEL = "users.NewUser"
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
