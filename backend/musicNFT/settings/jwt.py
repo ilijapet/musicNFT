@@ -2,10 +2,12 @@ from datetime import timedelta
 
 from django.conf import settings
 
+print(settings.SECRET_KEY)
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    # Rotate means that every time we use a refresh token, we get a new one.
+    #     # Rotate means that every time we use a refresh token, we get a new one.
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,

@@ -24,14 +24,14 @@ include(
     "base.py",
     # logging settings
     "logging.py",
-    # jwt seeting
-    "jwt.py",
     # application settings
     "custom.py",
     # dev settings (overwrite if any)
     optional(LOCAL_SETTINGS_PATH),
     # environment settings (overwrite if any)
     "envvars.py",
+    # jwt seeting
+    "jwt.py",
     # docker settings
     "docker.py",
 )
