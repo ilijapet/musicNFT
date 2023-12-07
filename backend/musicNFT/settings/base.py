@@ -22,7 +22,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
-    "backend.authentication.apps.AuthenticationConfig",
+    # Local
+    "backend.users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -88,9 +89,13 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
-    ]
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
+AUTH_USER_MODEL = "users.NewUser"
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"

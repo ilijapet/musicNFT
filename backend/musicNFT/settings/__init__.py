@@ -24,6 +24,8 @@ include(
     "base.py",
     # logging settings
     "logging.py",
+    # jwt seeting
+    "jwt.py",
     # application settings
     "custom.py",
     # dev settings (overwrite if any)
