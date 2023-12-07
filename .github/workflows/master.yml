@@ -36,9 +36,8 @@ jobs:
             LogLevel ERROR
             StrictHostKeyChecking no
           END
-      - name: Run deploy
+      - name:
+          Run deploy
+          # ssh into my EC2 instance and run a script
         run: |
-
           ssh target "cd musicNFT/ && docker-compose down && git pull && docker-compose build && docker-compose up -d --force-recreate"
-
-# comment
