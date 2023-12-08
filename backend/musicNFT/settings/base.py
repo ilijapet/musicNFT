@@ -5,8 +5,8 @@ DEBUG = False
 SECRET_KEY = NotImplemented
 
 ALLOWED_HOSTS: List[str] = ["*"]
-CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS: List[str] = ["https://nftsmusic.net", "https://wwww.nftmusic.net"]
+CORS_ALLOWED_ORIGINS = ["https://nftmusicportal.net", "http://nftmusicportal.net"]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -19,9 +19,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third party
-    "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
+    "corsheaders",
     # Local
     "backend.users.apps.UsersConfig",
 ]
@@ -87,7 +87,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
-    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 AUTH_USER_MODEL = "users.NewUser"

@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -33,3 +34,9 @@ class BlacklistTokenUpdateView(APIView):
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TestView(APIView):
+
+    def get(self, request):
+        return JsonResponse({"ilija": "care mogu da ti puse kare"})
