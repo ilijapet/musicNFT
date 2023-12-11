@@ -81,6 +81,8 @@ nosetests.xml
 
 # Amazon Web Services
 musicnft_keys.pem
+new_musicNFT.pem
+
 aws_deployment_guide.pdf
 
 # Gunicorn
