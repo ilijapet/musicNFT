@@ -5,18 +5,19 @@ DEBUG = False
 SECRET_KEY = NotImplemented
 
 ALLOWED_HOSTS: List[str] = ["*"]
-CSRF_TRUSTED_ORIGINS: List[str] = [
-    "https://nftsmusic.net",
-    "https://www.nftmusic.net",
-    "http://nftsmusic.net",
-    "http://www.nftmusic.net",
-]
-CORS_ALLOWED_ORIGINS = [
-    "https://nftmusicportal.net",
-    "https://wwww.nftmusicportal.net",
-    "http://nftmusicportal.net",
-    "http://wwww.nftmusicportal.net",
-]
+
+# CSRF_TRUSTED_ORIGINS: List[str] = [
+#     "https://nftsmusic.net",
+#     "https://www.nftmusic.net",
+#     "http://nftsmusic.net",
+#     "http://www.nftmusic.net",
+# ]
+# CORS_ALLOWED_ORIGINS = [
+#     "https://nftmusicportal.net",
+#     "https://wwww.nftmusicportal.net",
+#     "http://nftmusicportal.net",
+#     "http://wwww.nftmusicportal.net",
+# ]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -97,7 +98,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
-    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
 }
 
 AUTH_USER_MODEL = "users.NewUser"
