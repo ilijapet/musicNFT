@@ -38,5 +38,4 @@ include(
     "docker.py",
 )
 
-
-print("ilijaaaaaaa", CORS_ALLOWED_ORIGINS)
+print("ilijaaaaaaa", CORS_ALLOWED_ORIGINS)  # type: ignore
