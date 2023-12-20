@@ -48,8 +48,10 @@ up-dependencies-only:
 	docker-compose -f docker-compose.dev.yml up --force-recreate db
 
 
+
 .PHONY: gunicorn-dev
 gunicorn-dev:
+	pkill gunicorn || true
 	poetry run gunicorn -c gunicorn.dev.py 
 	tail -f ./var/log/gunicorn/dev.log
 

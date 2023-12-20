@@ -37,5 +37,3 @@ include(
     # docker settings
     "docker.py",
 )
-
-print("ilijaaaaaaa", CORS_ALLOWED_ORIGINS)  # type: ignore
