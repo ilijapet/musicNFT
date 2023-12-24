@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     "corsheaders",
     # Local
     "backend.users.apps.UsersConfig",
+    "backend.dashboard.apps.DashboardConfig",
+    "rest_framework_simplejwt.token_blacklist",
 ]
 
 MIDDLEWARE = [

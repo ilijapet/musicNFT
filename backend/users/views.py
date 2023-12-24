@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -6,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+from .models import UserProfile
 from .serializers import CustomUserSerializer
 
 
@@ -13,18 +15,23 @@ class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request, format="json"):  # noqa: A002
-        serializer = CustomUserSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                json = serializer.data
-                return Response(json, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            with transaction.atomic():
+                serializer = CustomUserSerializer(data=request.data)
+                if serializer.is_valid():
+                    user = serializer.save()
+                    if user:
+                        json = serializer.data
+                        profile = UserProfile.objects.create(user=user)
+                        profile.save()
+                        return Response(json, status=status.HTTP_201_CREATED)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BlacklistTokenUpdateView(APIView):
     permission_classes = [AllowAny]
-    authentication_classes = ()
 
     def post(self, request):
         try:
@@ -36,8 +43,9 @@ class BlacklistTokenUpdateView(APIView):
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
 
-class TestCase(APIView):
+class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format="json"):  # noqa: A002
-        return JsonResponse({"message": "Hello, world!"})
+        user_profile = UserProfile.objects.get(user=request.user)
+        return JsonResponse({"payment_type": user_profile.payment_type})

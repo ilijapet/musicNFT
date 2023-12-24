@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.db import models
 from django.forms import CharField, Textarea, TextInput  # type: ignore
 
-from backend.users.models import NewUser
+from backend.users.models import NewUser, UserProfile
 
 
 class UserAdminConfig(UserAdmin):
@@ -61,3 +61,5 @@ class UserAdminConfig(UserAdmin):
 
 
 admin.site.register(NewUser, UserAdminConfig)
+admin.site.register(UserProfile)
+# admin.site.register(BlacklistTokenUpdateView)

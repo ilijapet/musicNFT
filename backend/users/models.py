@@ -1,7 +1,10 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+from backend.dashboard.models import NftMetadata
 
 
 class CustomAccountManager(BaseUserManager):
@@ -45,3 +48,16 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.user_name
+
+
+class UserProfile(models.Model):
+    eth_address = models.CharField(max_length=100, blank=True, default="")
+    payment_type = models.CharField(max_length=20, default="undefined")
+    total_no_of_nfts = models.IntegerField(default=0)
+    total_paid = models.FloatField(default=0)
+    nft_ids = ArrayField(models.IntegerField(null=True, blank=True), default=list)
+    user = models.OneToOneField(NewUser, on_delete=models.CASCADE, default=None)
+    nft_metadata = models.ManyToManyField(NftMetadata)
+
+    def __str__(self):
+        return f"{self.user.user_name}"
