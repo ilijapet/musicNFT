@@ -28,6 +28,8 @@ include(
     "logging.py",
     # application settings
     "custom.py",
+    # email
+    "email.py",
     # dev settings (overwrite if any)
     optional(LOCAL_SETTINGS_PATH),
     # environment settings (overwrite if any)

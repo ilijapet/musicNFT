@@ -25,6 +25,22 @@ class NewUserSerializer(serializers.ModelSerializer):
         return instance
 
 
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = (
+            "eth_address",
+            "payment_type",
+            "total_no_of_nfts",
+            "total_paid",
+            "nft_ids",
+        )
+
+    # TODO: add user field
+    # user = models.OneToOneField(NewUser, on_delete=models.CASCADE, default=None)
+    # nft_metadata
+
+
 class PasswordRestSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
 

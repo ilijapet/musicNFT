@@ -25,6 +25,7 @@ from .serializers import (
     PasswordRestSerializer,
     NewUserSerializer,
     ResetPasswordSerializer,
+    UserProfileSerializer,
 )
 
 
@@ -60,14 +61,23 @@ class BlacklistTokenUpdateView(APIView):
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
 
+# TODO: refactor this to more idiomatic Django
+# class UserProfileView(generics.RetrieveUpdateDestroyAPIView):
+#     permission_classes = [IsAuthenticated]
+#     queryset = UserProfile.objects.all()
+#     serializer_class = UserProfileSerializer
+
+
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format="json"):  # noqa: A002
-        user_profile = UserProfile.objects.get(user=request.user)
-        # TODO: here return whole user porfile and then select what you need on the front end
-        #  this is how you can make this more general and usable
-        return JsonResponse({"payment_type": user_profile.payment_type})
+        try:
+            user_profile = UserProfile.objects.get(user__user_name=request.user)
+            serializer = UserProfileSerializer(user_profile)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PasswordRestRequestView(GenericAPIView):
@@ -94,8 +104,18 @@ class PasswordRestRequestView(GenericAPIView):
                         absurl = f"http://{current_site}{relativeLink}"
                     else:
                         absurl = f"https://{current_site}{relativeLink}"
+
+                    data = {
+                        "email_subject": "Password Reset Request",
+                        "email_body": f"Hi {user.user_name},\nPlease use the link below to reset your password\n{absurl}",
+                        "to_email": user.email,
+                    }
+                    # send email
+                    send_normal_email(data)
                     return JsonResponse(
-                        {"message": f"Your password link url {absurl}"},
+                        {
+                            "message": f"Your password link aws sent on email! Here it is url {absurl}"
+                        },
                         status=status.HTTP_200_OK,
                     )
                 else:
