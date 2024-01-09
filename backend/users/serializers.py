@@ -1,15 +1,16 @@
-from rest_framework import serializers
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import smart_str, smart_bytes, force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-from .utils import send_normal_email
+from django.utils.encoding import force_bytes, smart_bytes, smart_str
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from rest_framework import serializers
 
 from .models import NewUser, UserProfile
+from .utils import send_normal_email
 
 
 class NewUserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = NewUser
         fields = ("email", "user_name", "password")
@@ -26,6 +27,7 @@ class NewUserSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = UserProfile
         fields = (
@@ -67,14 +69,10 @@ class ResetPasswordSerializer(serializers.Serializer):
             user = NewUser.objects.get(pk=pk)
 
             if not PasswordResetTokenGenerator().check_token(user, token):
-                raise serializers.ValidationError(
-                    "Rest token is not valid, please request a new one"
-                )
+                raise serializers.ValidationError("Rest token is not valid, please request a new one")
 
             user.set_password(password)
             user.save()
             return value
-        except Exception as e:
-            raise serializers.ValidationError(
-                "Something went wrong in reset token validation process"
-            )
+        except Exception:
+            raise serializers.ValidationError("Something went wrong in reset token validation process")

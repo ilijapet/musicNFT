@@ -1,11 +1,16 @@
 # Use an official Python runtime as the base image
 FROM python:3.10.4-buster
 
-# Set the working directory in the container
+# Set the working directory in the container from where all command will be running
 WORKDIR /opt/project
 
+# Tells Python to not write .pyc files to disk. 
+# This can make your Docker build slightly faster and can also 
+#  avoid some permission issues in certain cases.
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+# This adds the current directory (.) to the Python path. This means that 
+# Python will be able to import modules from the current directory.
 ENV PYTHONPATH .
 ENV BACKENDSETTINGS_IN_DOCKER true
 

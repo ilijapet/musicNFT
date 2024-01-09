@@ -41,7 +41,7 @@ lint:
 	poetry run pre-commit run --all-files
 
 # Docker
-.PHONY: `
+.PHONY: up-dependencies-only
 up-dependencies-only:
 	test -f .env || touch .env
 	# defualt is docker.compoe.yml and that is why we use -f docker.compose.dev.yml
