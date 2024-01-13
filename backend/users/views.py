@@ -13,7 +13,12 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import NewUser, UserProfile
-from .serializers import NewUserSerializer, PasswordRestSerializer, ResetPasswordSerializer, UserProfileSerializer
+from .serializers import (
+    NewUserSerializer,
+    PasswordRestSerializer,
+    ResetPasswordSerializer,
+    UserProfileSerializer,
+)
 from .utils import send_normal_email
 
 
@@ -49,13 +54,6 @@ class BlacklistTokenUpdateView(APIView):
             return Response(e, status=status.HTTP_400_BAD_REQUEST)
 
 
-# TODO: refactor this to more idiomatic Django
-# class UserProfileView(generics.RetrieveUpdateDestroyAPIView):
-#     permission_classes = [IsAuthenticated]
-#     queryset = UserProfile.objects.all()
-#     serializer_class = UserProfileSerializer
-
-
 class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -85,10 +83,7 @@ class PasswordRestRequestView(GenericAPIView):
                     current_site = get_current_site(request).domain
                     relativeLinkBackend = reverse(
                         "users:reset-password",
-                        kwargs={
-                            "encoded_pk": encoded_pk,
-                            "token": token
-                        },
+                        kwargs={"encoded_pk": encoded_pk, "token": token},
                     )
                     print("ilija", relativeLinkBackend, "ilija")
                     relativeLink = f"/resetpassword/{encoded_pk}/{token}"
@@ -97,12 +92,9 @@ class PasswordRestRequestView(GenericAPIView):
                     else:
                         absurl = f"https://nftmusicportal.net{relativeLink}"
                     data = {
-                        "email_subject":
-                            "Password Reset Request",
-                        "email_body":
-                            f"Hi {user.user_name},\nPlease use the link below to reset your password\n{absurl}",
-                        "to_email":
-                            user.email,
+                        "email_subject": "Password Reset Request",
+                        "email_body": f"Hi {user.user_name},\nPlease use the link below to reset your password\n{absurl}",
+                        "to_email": user.email,
                     }
                     # send email
                     send_normal_email(data)
@@ -133,7 +125,9 @@ class ResetPasswordAPIView(GenericAPIView):
         """
         Verify token & encoded_pk and then reset the password.
         """
-        serializer = self.serializer_class(data=request.data, context={"kwargs": kwargs})
+        serializer = self.serializer_class(
+            data=request.data, context={"kwargs": kwargs}
+        )
         serializer.is_valid(raise_exception=True)
         return Response(
             {"message": "Password reset complete"},

@@ -80,8 +80,7 @@ htmlcov/
 nosetests.xml
 
 # Amazon Web Services
-musicnft_keys.pem
-new_musicNFT.pem
+keys_amazon.pem
 musicnft-user_accessKeys.csv
 aws_deployment_guide.pdf
 

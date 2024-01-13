@@ -13,9 +13,6 @@ class NftMetadata(models.Model):
 class OrderHistory(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     user_identifier = models.CharField(max_length=255, null=True, blank=True)
-    # From NewUser
     user_name = models.CharField(max_length=255, null=True, blank=True)
-    # From NftMetadata
-    metadata_identifier = models.CharField(max_length=255, null=True, blank=True)
-    profile_type = models.CharField(max_length=20)
-    price = models.FloatField()
+    organization = models.CharField(max_length=255, null=True, blank=True)
+    amount = models.FloatField()

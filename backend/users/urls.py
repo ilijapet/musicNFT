@@ -1,7 +1,11 @@
 from django.urls import path
 
 from .views import (
-    BlacklistTokenUpdateView, CustomUserCreate, PasswordRestRequestView, ResetPasswordAPIView, UserProfileView
+    BlacklistTokenUpdateView,
+    CustomUserCreate,
+    PasswordRestRequestView,
+    ResetPasswordAPIView,
+    UserProfileView,
 )
 
 app_name = "users"
